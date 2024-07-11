@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/defaultLayout}">
+
+<section layout:fragment="content" class="contents">
+	<div class="display-4 text-center my-2 font-weight-bold">회원 가입</div>
+	<div id="signUpBox" class="border rounded my-2">
+		<form>
+			<div class="form-group mb-5 mx-3">
+				<label class="font-weight-bold">아이디</label>
+				<div class="d-flex align-items-center">
+					<input type="text" name="id" class="form-control col-9 mr-1"
+						placeholder="아이디를 입력하세요.">
+					<button id="duplicatedBtn" class="btn btn-success font-weight-bold">중복확인</button>
+				</div>
+			</div>
+			<div class="form-group mb-5 mx-3">
+				<label class="font-weight-bold">비밀번호</label> <input type="password"
+					name="password" class="form-control" placeholder="비밀번호를 입력하세요.">
+			</div>
+			<div class="form-group mb-5 mx-3">
+				<label class="font-weight-bold">비밀번호 확인</label> <input
+					type="password" name="password" class="form-control"
+					placeholder="비밀번호 확인">
+			</div>
+			<div class="form-group mb-5 mx-3">
+				<label class="font-weight-bold">이름</label> <input type="text"
+					name="name" class="form-control" placeholder="이름을 입력하세요.">
+			</div>
+			<div class="form-group mb-5 mx-3">
+				<label class="font-weight-bold">이메일</label> <input type="text"
+					name="email" class="form-control" placeholder="이메일을 입력하세요.">
+			</div>
+			<button type="submit" id="signUpBtn"
+				class="btn btn-warning font-weight-bold my-5 mx-3">회원 가입 완료</button>
+		</form>
+	</div>
+</section>
+
+<th:block layout:fragment="script"></th:block>
+
+</html>
