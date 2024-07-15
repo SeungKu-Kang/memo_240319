@@ -4,10 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpSession;
+
 @RequestMapping("/user")
 @Controller
 public class UserController {
-	
+
 	/**
 	 * 회원가입 화면
 	 * @return
@@ -18,12 +20,28 @@ public class UserController {
 		return "user/signUp";
 	}
 	
-	/** 메소드 작성완료후 달기 
+	/**
 	 * 로그인 화면
 	 * @return
 	 */
 	@GetMapping("/sign-in-view")
 	public String signInView() {
 		return "user/signIn";
+	}
+	
+	/**
+	 * 로그아웃 API
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/sign-out")
+	public String signOut(HttpSession session) {
+		// session 내용 비우기
+		session.removeAttribute("userId");
+		session.removeAttribute("userLoginId");
+		session.removeAttribute("userName");
+		
+		// 로그인 페이지로 이동
+		return "redirect:/user/sign-in-view";
 	}
 }

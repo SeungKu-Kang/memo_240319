@@ -7,7 +7,7 @@ import com.memo.user.Entity.UserEntity;
 import com.memo.user.repository.UserRepository;
 
 @Service
-public class UserBo {
+public class UserBO {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -28,4 +28,15 @@ public class UserBo {
 				.email(email)
 				.build());
 	}
+	
+	// input : loginId, password
+	// output: UserEntity or null
+	public UserEntity getUserEntityByLoginIdPassword (String loginId, String password) {
+		return userRepository.findByLoginIdAndPassword(loginId,password); // 이때 method명은 JPQL 규칙에 의해 만들기
+	}
+	
+	
+	
+	
+	
 }
