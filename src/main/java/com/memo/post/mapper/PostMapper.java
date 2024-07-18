@@ -20,4 +20,8 @@ public interface PostMapper {
 			@Param("subject") String subject, 
 			@Param("content") String content, 
 			@Param("imagePath") String imagePath);
+	
+	public Post getPostByPostIdUserId(
+			@Param("userId") int userId, 
+			@Param("postId") int postId);
 }
