@@ -2,77 +2,86 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="com.memo.post.mapper.PostMapper">
- 	<select id="selectPostListTest" resultType="map">
- 		SELECT
- 			*
- 		FROM
- 			`post`
- 	</select>
- 	
- 	<select id="selectPostListByUserId" parameterType="int" resultType="com.memo.post.domain.Post">
- 		SELECT
- 			`id`
-			, `userId`
-			, `subject`
-			, `content`
-			, `imagePath`
-			, `createdAt`
-			, `updatedAt`
+<mapper namespace="com.memo.post.mapper.PostMapper">
+
+	<select id="selectPostListTest" resultType="map">
+		SELECT
+			*
+		FROM
+			`post`
+	</select>
+	
+	<select id="selectPostListByUserId" parameterType="int" resultType="com.memo.post.domain.Post">
+		SELECT
+			`id`
+			,`userId`
+			,`subject`
+			,`content`
+			,`imagePath`
+			,`createdAt`
+			,`updatedAt`
 		FROM
 			`post`
 		WHERE
 			`userId` = #{userId}
 		ORDER BY `id` DESC
- 	</select>
- 	
- 	<insert id="insertPost" parameterType="map">
- 		INSERT INTO `post`
- 		(
+	</select>
+	
+	<insert id="insertPost" parameterType="map">
+		INSERT INTO `post`
+		(
 			`userId`
-			, `subject`
-			, `content`
-			, `imagePath`
-			, `createdAt`
-			, `updatedAt`
- 		)
- 		VALUES
- 		(
- 			#{userId}
- 			, #{subject}
- 			, #{content}
- 			, #{imagePath}
- 			, NOW()
- 			, NOW()
- 		)
- 	</insert>
- 	
- 	<select id="selectPostByPostIdUserId" parameterType="map" resultType="com.memo.post.domain.Post">
- 		SELECT
- 			`id`
-			, `userId`
-			, `subject`
-			, `content`
-			, `imagePath`
-			, `createdAt`
-			, `updatedAt`
+			,`subject`
+			,`content`
+			,`imagePath`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUES
+		(
+			#{userId}
+			, #{subject}
+			, #{content}
+			, #{imagePath}
+			, NOW()
+			, NOW()
+		)
+	</insert>
+	
+	<select id="selectPostByPostIdUserId" parameterType="map" resultType="com.memo.post.domain.Post">
+		SELECT
+			`id`
+			,`userId`
+			,`subject`
+			,`content`
+			,`imagePath`
+			,`createdAt`
+			,`updatedAt`
 		FROM
 			`post`
 		WHERE
 			`userId` = #{userId}
-			AND	`id` = #{postId}
- 	</select>
- 	
- 	<update id="updatePostByPostId" parameterType="map">
- 		UPDATE `post`
- 		SET
- 			`subject` = #{subject}
- 			, `content` = #{content}
- 			<if test="imagePath != null">
-	 		, `imagePath` = #{imagePath}
- 			</if>
- 			, `updatedAt` = NOW();
- 		WHERE
- 			`id` = #{postId}	
- 	</update>
- </mapper>
+			AND `id` = #{postId}
+	</select>
+	
+	<update id="updatePostByPostId" parameterType="map">
+		UPDATE `post`
+		SET
+			`subject` = #{subject}
+			, `content` = #{content}
+			<if test="imagePath != null">
+			, `imagePath` = #{imagePath}
+			</if>
+			, `updatedAt` = NOW()
+		WHERE
+			`id` = #{postId}
+	</update>
+	
+	<delete id="deletePostByPostId" parameterType="int">
+		DELETE
+		FROM
+			`post`
+		WHERE
+			`id` = #{postId}
+	</delete>
+</mapper>
