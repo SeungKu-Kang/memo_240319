@@ -34,6 +34,9 @@ public class UserRestController {
 		
 		// github 이슈 테스트
 		
+		// github 이슈 테스트222
+		
+		
 		
 		// db 조회
 		UserEntity user = userBO.getUserEntityByLoginId(loginId);
